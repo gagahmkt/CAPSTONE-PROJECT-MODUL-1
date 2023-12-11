@@ -67,10 +67,12 @@ def tambahData(barang):
     ulang = True
     while ulang:
         while True:
+            print('\n\t\t\t  DAFTAR BARANG BLACK MAMBA\n')
+            list()
             print('Item yang akan ditambahkan:\n')
             no_item = input('Masukkan No. Item: ')
             if no_item.isdigit() == False:
-                print('\nMasukkan No. Item dengan benar')
+                print('Masukkan No. Item dengan benar')
             else:
                 no_item_int = int(no_item)
                 if any(item_tersedia[0] == no_item_int for item_tersedia in barang):
@@ -261,7 +263,6 @@ def beliBarang(barang):
         else:
             print(f'Terima kasih, anda menerima kembalian sebesar Rp {(cash-totalHarga):,d}')
             break
-    
 
 #################################################################################################################
 
