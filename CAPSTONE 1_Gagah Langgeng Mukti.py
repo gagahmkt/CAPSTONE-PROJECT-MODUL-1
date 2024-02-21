@@ -132,40 +132,46 @@ def updateData(barang):
         while True:
             print('\n\t\t\t  DAFTAR BARANG BLACK MAMBA\n')
             list()
-            update_pilih = int(input('Yang akan diupdate:\n'
-                                    '1. Stok\n'
-                                    '2. Harga\n'
-                                    'Masukkan pilihan (1-2): '))
-            if update_pilih == 1 or update_pilih == 2:
-                update = int(input('Masukkan no. item barang yang akan diupdate: \n'))
-                for i in range (len(barang)):
-                    if update == barang[i][0]:
-                        while True:
-                            if update_pilih == 1:
-                                stock_baru = input('Masukkan stok: ')
-                                if stock_baru.isdigit() == False:
+            try:
+                update_pilih = int(input('Yang akan diupdate:\n'
+                                        '1. Stok\n'
+                                        '2. Harga\n'
+                                        'Masukkan pilihan (1-2): '))
+                if update_pilih == 1 or update_pilih == 2:
+                    update = int(input('Masukkan no. item barang yang akan diupdate: \n'))
+                    for i in range (len(barang)):
+                        if update == barang[i][0]:
+                            while True:
+                                try:
+                                    if update_pilih == 1:
+                                        stock_baru = input('Masukkan stok: ')
+                                        if stock_baru.isdigit() == False:
+                                            print('Masukkan angka!')
+                                        else:
+                                            barang[i][-2] = int(stock_baru)
+                                            print('Update berhasil')
+                                            break
+                                    elif update_pilih == 2:
+                                        harga_baru = input('Masukkan harga: ')
+                                        if harga_baru.isdigit() == False:
+                                            print('Masukkan angka!')
+                                        else:
+                                            barang[i][-1] = int(harga_baru)
+                                            print('Update berhasil')
+                                            break
+                                except ValueError:
                                     print('Masukkan angka!')
-                                else:
-                                    barang[i][-2] = int(stock_baru)
-                                    print('Update berhasil')
-                                    break
-                            elif update_pilih == 2:
-                                harga_baru = input('Masukkan harga: ')
-                                if harga_baru.isdigit() == False:
-                                    print('Masukkan angka!')
-                                else:
-                                    barang[i][-1] = int(harga_baru)
-                                    print('Update berhasil')
-                                    break
-                        list()
+                            list()
+                            break
+                    else:
+                        print(f'No. Item {update} tidak ada dalam daftar')
                         break
-                else:
-                    print(f'No. Item {update} tidak ada dalam daftar')
                     break
-                break
-            else:
-                print('Masukkan pilihan yang benar')
-                break
+                else:
+                    print('Masukkan pilihan yang benar')
+                    break
+            except ValueError:
+                print('Masukkan angka!')
         while True:
             lanjut = input('lanjut update barang ? (Y/T):').upper()
             if lanjut == 'T':
@@ -263,39 +269,32 @@ def beliBarang(barang):
         else:
             print(f'Terima kasih, anda menerima kembalian sebesar Rp {(cash-totalHarga):,d}')
             break
-
+    
 #################################################################################################################
 
 while True:
     try:
         menu()
         Menu = int(input('Masukkan menu (1-7): '))
-        
         if Menu == 1:
             clear()
             print('\n\t\t\t  DAFTAR BARANG BLACK MAMBA\n')
             list()
-
         elif Menu == 2:
             clear()
             cariData(listBarang)
-
         elif Menu == 3 :
             clear()
             tambahData(listBarang)
-
         elif Menu == 4:
             clear()
             updateData(listBarang)
-
         elif Menu == 5:
             clear()
             hapusData(listBarang)
-
         elif Menu == 6:
             clear()
             beliBarang(listBarang)
-
         elif Menu == 7:
             print('Terima kasih')
             break
